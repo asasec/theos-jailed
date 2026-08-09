@@ -19,13 +19,6 @@ jobs:
       - name: Theos Ortamını Kur
         uses: beerpiss/theos-action@v1
 
-      - name: theos-jailed Modülünü Yükle
-        run: |
-          mkdir -p $THEOS/mod/jailed
-          cp -R . $THEOS/mod/jailed/
-          cd $THEOS/mod/jailed
-          ./install
-
       - name: Projeyi Derle (Make)
         run: |
           make package
