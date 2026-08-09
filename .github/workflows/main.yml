@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest # Theos derlemek için macOS ortamı önerilir
+    runs-on: macos-latest
 
     steps:
       - name: Projeyi Kopyala (Checkout)
@@ -17,13 +17,11 @@ jobs:
           submodules: recursive
 
       - name: Theos Ortamını Kur
-        uses: beerpiss/theos-action@v1 # Theos'u ve SDK'ları otomatik kurar/önbelleğe alır
+        uses: beerpiss/theos-action@v1
 
       - name: theos-jailed Modülünü Yükle
         run: |
-          # theos-jailed deposunu theos modülleri içine klonluyoruz
           git clone https://github.com/kabiroberai/theos-jailed.git $THEOS/mod/jailed
-          # Veya projenizin içinde alt modül (submodule) olarak eklediyseniz burayı projenize göre ayarlayabilirsiniz.
           cd $THEOS/mod/jailed && ./install
 
       - name: Projeyi Derle (Make)
@@ -35,5 +33,5 @@ jobs:
       - name: Çıktı Dosyasını (Artifact) Kaydet
         uses: actions/upload-artifact@v4
         with:
-      name: Jailed-Tweak-Package
+          name: Jailed-Tweak-Package
           path: packages/*.deb
