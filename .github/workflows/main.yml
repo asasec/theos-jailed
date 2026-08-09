@@ -21,7 +21,8 @@ jobs:
 
       - name: theos-jailed Modülünü Yükle
         run: |
-          git clone https://github.com/kabiroberai/theos-jailed.git $THEOS/mod/jailed
+          mkdir -p $THEOS/mod/jailed
+          cp -R . $THEOS/mod/jailed/
           cd $THEOS/mod/jailed
           ./install
 
